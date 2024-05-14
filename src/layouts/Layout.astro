@@ -20,23 +20,46 @@ const { title } = Astro.props
     <slot />
   </body>
 </html>
+
 <style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,400;0,500;1,400;1,500&display=swap");
+
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+    --white: #fff;
+    --black-muted: #071c20;
   }
+
   html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
+    font:
+      500 18px/1.5 "Fira Sans Extra Condensed",
+      sans-serif,
+      system-ui;
+
+    .fira-sans-extra-condensed-regular {
+      font-family: "Fira Sans Extra Condensed", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .fira-sans-extra-condensed-medium {
+      font-family: "Fira Sans Extra Condensed", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .fira-sans-extra-condensed-regular-italic {
+      font-family: "Fira Sans Extra Condensed", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .fira-sans-extra-condensed-medium-italic {
+      font-family: "Fira Sans Extra Condensed", sans-serif;
+      font-weight: 500;
+      font-style: italic;
+    }
   }
+
   code {
     font-family:
       Menlo,
