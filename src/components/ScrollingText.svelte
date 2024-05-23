@@ -1,52 +1,38 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
-  import {Draggable} from 'gsap/Draggable';
 
-  gsap.registerPlugin(Draggable);
+
+  export let textOne
+  export let textTwo
+  export let textThree
+
+  let id = `scrolling-text-${Math.random().toString(36).substring(2, 15)}`
 
   onMount(() => {
-    const duration = 50;
-    const wrap = gsap.utils.wrap(0, 1);
+    
+    const duration = 20;
 
-    const ticker = document .querySelector('.scrolling-container');
-    const text = document.querySelector('.scrolling-text');
+    const ticker = document.querySelector('.scrolling-container') as HTMLElement;
+    const items = Array.from(ticker.querySelectorAll('li')) as HTMLElement[];
 
-    const clone = text.cloneNode(true);
-    ticker.appendChild(clone);
+  
+    items.forEach(item => {
+      const clone = item.cloneNode(true) as HTMLElement;
+      ticker.appendChild(clone);
+      items.push(clone);
+    });
 
-    const items = [text, clone];
     let anim: gsap.core.Tween;
     let totalDistance: number;
 
-    const draggable = new Draggable(ticker, {
-      type: "x",
-      trigger: ticker,
-      throwProps: true,
-      onPressInit: function() {
-        anim.pause();
-      },
-      onDrag: function() {
-        let prog = wrap(-this.x / totalDistance);
-        anim.progress(prog);
-      },
-      onThrowUpdate: function() {
-        let prog = wrap(-this.x / totalDistance);
-        anim.progress(prog);
-      },
-      onThrowComplete: function() {
-        anim.play();
-        gsap.fromTo(anim, { timeScale: 0 }, { duration: 2, timeScale: 1, ease: "power1.in" });
-      },
-    });
-
     function resize() {
       if (anim) anim.kill();
-      totalDistance = ticker.offsetWidth;
+      totalDistance = items[0].offsetWidth * items.length / 2;
 
       items.forEach((item, i) => {
         gsap.set(item, {
-          x: i * totalDistance
+          x: i * items[0].offsetWidth
         });
       });
 
@@ -56,33 +42,42 @@
         ease: "none",
         repeat: -1,
         modifiers: {
-          x: gsap.utils.unitize(x => parseFloat(x) % (totalDistance * items.length))
+          x: gsap.utils.unitize(x => parseFloat(x) % totalDistance)
         }
       });
     }
 
+  
     window.addEventListener('resize', resize);
     resize();
   });
-  
-
 </script>
 
-<section class="scrolling-container border-black-muted">
-  <h1 class="scrolling-text text-xl uppercase">Some random words</h1>
+<section id={id} class="scrolling-container ">
+  <ul class="wrapper">
+    <li class="scrolling-text text-xl uppercase">{textOne}</li>
+    <li class="scrolling-text text-xl uppercase">{textTwo}</li>
+    <li class="scrolling-text text-xl uppercase">{textThree}</li>
+  </ul>
 </section>
 
 <style>
   .scrolling-container {
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-      white-space: nowrap;
-      /* position: relative; */
-      /* align-items: center; */
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .wrapper {
+    display: flex;
+    will-change: transform;
   }
 
   .scrolling-text {
-      white-space: nowrap;
+    white-space: nowrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 </style>

@@ -1,71 +1,74 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import ScrollingText from "../components/ScrollingText.svelte"
+import Layout from "../layouts/layout.astro"
+import ScrollingText from "../components/scrollingText.svelte"
 ---
 
 <Layout title="Welcome to Astro.">
   <main class="grid grid-cols-1">
-    <!-- <section class="border-b-2 border-black-muted"> -->
-    <!-- <h1 class="truncate text-clip text-xl uppercase">
-        Some random words Some random words
-      </h1> -->
-    <ScrollingText client:only="svelte" />
+    <ScrollingText
+      client:load
+      textOne="Some random words"
+      textTwo="Some random words"
+      textThree="Some random words"
+    />
+
+    <section class="container-center border-y-2 border-black-muted">
+      <!-- left grid -->
+      <article class="border-r-2 border-black-muted px-2">
+        <h1 class="text-xl uppercase">Hi - I’m Dante Solis,</h1>
+        <h1 class="text-xl uppercase">front end engineer</h1>
+        <h1 class="text-xl uppercase">based in brussels belgium</h1>
+        <footer class="grid grid-cols-2 justify-items-center">
+          <p class="text-base">All rights reserved</p>
+          <p class="text-base">2024 &copy;</p>
+        </footer>
+      </article>
+      <!-- right grid -->
+      <article class="grid overflow-hidden">
+        <div class="grid content-center gap-4 pl-2">
+          <p class="text-base">
+            I like building intuitive and engaging user interfaces.
+          </p>
+          <p class="text-base">
+            I love working on products where I can put my all my skills to good
+            used; new ways to solve previously encountered frontend, backend &
+            design challenges.
+          </p>
+          <p class="text-base">
+            I have over 8yrs experience as a frontend engineer, 4 of which I
+            have also spent as a full stack developer.
+          </p>
+          <p class="text-base">
+            The last 3 years I have also worked as a product designer.
+          </p>
+        </div>
+        <div
+          class="content-center border-y-2 border-black-muted pl-2 text-center"
+        >
+          <h1 class="text-xl uppercase">work</h1>
+        </div>
+        <div class="content-center border-black-muted pl-2 text-center">
+          <h1 class="text-xl uppercase">contact</h1>
+        </div>
+      </article>
+    </section>
+
+    <!-- [FIXME]: Not bringing ointeractivity to this island -->
+    <ScrollingText
+      client:load
+      textOne="Frontend + Backend + "
+      textTwo="Development + Printing + "
+      textThree="Design + Branding + Strategy"
+    />
   </main>
-  <section class="container-center border-t-2 border-black-muted">
-    <!-- left grid -->
-    <article class="border-r-2 border-black-muted px-2">
-      <h1 class="text-xl uppercase">Hi - I’m Dante Solis,</h1>
-      <h1 class="text-xl uppercase">front end engineer</h1>
-      <h1 class="text-xl uppercase">based in brussels belgium</h1>
-      <footer class="grid grid-cols-2 justify-items-center">
-        <p class="text-base">All rights reserved</p>
-        <p class="text-base">2024 &copy;</p>
-      </footer>
-    </article>
-    <!-- right grid -->
-    <article class="grid overflow-hidden">
-      <div class="grid content-center gap-4 pl-2">
-        <p class="text-base">
-          I like building intuitive and engaging user interfaces.
-        </p>
-        <p class="text-base">
-          I love working on products where I can put my all my skills to good
-          used; new ways to solve previously encountered frontend, backend &
-          design challenges.
-        </p>
-        <p class="text-base">
-          I have over 8yrs experience as a frontend engineer, 4 of which I have
-          also spent as a full stack developer.
-        </p>
-        <p class="text-base">
-          The last 3 years I have also worked as a product designer.
-        </p>
-      </div>
-      <div
-        class="content-center border-y-2 border-black-muted pl-2 text-center"
-      >
-        <h1 class="text-xl uppercase">work</h1>
-      </div>
-      <div class="content-center border-black-muted pl-2 text-center">
-        <h1 class="text-xl uppercase">contact</h1>
-      </div>
-    </article>
-  </section>
-  <section class="border-t-2 border-black-muted">
-    <h1 class="truncate text-clip text-xl uppercase">
-      FRONTEND + BACKEND + DEVELOPMENT + DESIGN + BRANDING + STRATEGY
-    </h1>
-  </section>
+
+  <style>
+    .container-grid {
+      display: grid;
+    }
+    .container-center {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  </style>
 </Layout>
-
-<style>
-  .container-grid {
-    display: grid;
-  }
-  .container-center {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-</style>
-
-<script></script>
