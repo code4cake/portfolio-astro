@@ -1,46 +1,88 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { gsap } from 'gsap';
-  
-    onMount(() => {
-      const text = document.getElementById("scrolling-text");
-      const container = document.getElementById("scrolling-text-container");
-      const containerWidth = container?.offsetWidth;
-      const textWidth = text?.offsetWidth;
-  
-      gsap.fromTo(text, 
-        { x: containerWidth }, 
-        { 
-          x: -textWidth, 
-          duration: 10, 
-          repeat: -1, 
-          ease: "linear" 
-        });
+  import { onMount } from 'svelte';
+  import { gsap } from 'gsap';
+  import {Draggable} from 'gsap/Draggable';
+
+  gsap.registerPlugin(Draggable);
+
+  onMount(() => {
+    const duration = 50;
+    const wrap = gsap.utils.wrap(0, 1);
+
+    const ticker = document .querySelector('.scrolling-container');
+    const text = document.querySelector('.scrolling-text');
+
+    const clone = text.cloneNode(true);
+    ticker.appendChild(clone);
+
+    const items = [text, clone];
+    let anim: gsap.core.Tween;
+    let totalDistance: number;
+
+    const draggable = new Draggable(ticker, {
+      type: "x",
+      trigger: ticker,
+      throwProps: true,
+      onPressInit: function() {
+        anim.pause();
+      },
+      onDrag: function() {
+        let prog = wrap(-this.x / totalDistance);
+        anim.progress(prog);
+      },
+      onThrowUpdate: function() {
+        let prog = wrap(-this.x / totalDistance);
+        anim.progress(prog);
+      },
+      onThrowComplete: function() {
+        anim.play();
+        gsap.fromTo(anim, { timeScale: 0 }, { duration: 2, timeScale: 1, ease: "power1.in" });
+      },
     });
-  </script>
-  
-  
-  <section class="border-b-2 border-black-muted" id="scrolling-text-container">
-    <h1  class="text-clip text-xl uppercase" id="scrolling-text">Some random words Some random words </h1>
-  </section>
-  
 
-  <style is:inline>
-    /* #scrolling-text-container {
-      overflow: hidden;
-      width: 100%;
-    } */
+    function resize() {
+      if (anim) anim.kill();
+      totalDistance = ticker.offsetWidth;
 
-    /* #scrolling-text {
-      white-space: nowrap;
-    } */
+      items.forEach((item, i) => {
+        gsap.set(item, {
+          x: i * totalDistance
+        });
+      });
 
-    section:is(#scrolling-text-container) {
-      overflow: hidden;
-      width: 100%;
+      anim = gsap.to(items, {
+        x: `-=${totalDistance}`,
+        duration: duration,
+        ease: "none",
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize(x => parseFloat(x) % (totalDistance * items.length))
+        }
+      });
     }
 
-    h1:is(#scrolling-text) {
+    window.addEventListener('resize', resize);
+    resize();
+  });
+  
+
+</script>
+
+<section class="scrolling-container border-black-muted">
+  <h1 class="scrolling-text text-xl uppercase">Some random words</h1>
+</section>
+
+<style>
+  .scrolling-container {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
       white-space: nowrap;
-    }
-  </style>
+      /* position: relative; */
+      /* align-items: center; */
+  }
+
+  .scrolling-text {
+      white-space: nowrap;
+  }
+</style>
