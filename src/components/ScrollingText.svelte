@@ -3,15 +3,15 @@
   import { gsap } from 'gsap';
 
 
-  export let textOne
-  export let textTwo
-  export let textThree
+  export let textOne;
+  export let textTwo;
+  export let textThree;
 
-  let id = `scrolling-text-${Math.random().toString(36).substring(2, 15)}`
+  
 
   onMount(() => {
     
-    const duration = 20;
+    const duration = 30;
 
     const ticker = document.querySelector('.scrolling-container') as HTMLElement;
     const items = Array.from(ticker.querySelectorAll('li')) as HTMLElement[];
@@ -53,11 +53,11 @@
   });
 </script>
 
-<section id={id} class="scrolling-container ">
+<section class="scrolling-container ">
   <ul class="wrapper">
-    <li class="scrolling-text text-xl uppercase">{textOne}</li>
-    <li class="scrolling-text text-xl uppercase">{textTwo}</li>
-    <li class="scrolling-text text-xl uppercase">{textThree}</li>
+    <li class="scrolling-text text-2xl uppercase">{textOne}</li>
+    <li class="scrolling-text text-2xl uppercase">{textTwo}</li>
+    <li class="scrolling-text text-2xl uppercase">{textThree}</li>
   </ul>
 </section>
 

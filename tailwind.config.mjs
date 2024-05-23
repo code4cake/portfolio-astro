@@ -8,9 +8,10 @@ export default {
       },
       fontSize: {
         base: "1rem",
-        large: "1.33rem",
-        xl: "4.21rem",
-        "2xl": "5.61rem",
+        large: "1.33rem", // h6
+        xl: "2.369rem", // h4
+        "2xl": "4.21rem", // h2
+        "3xl": "5.61rem", // h1
       },
     },
   },
@@ -18,5 +19,6 @@ export default {
 }
 
 // 20 ~h6 24px - large
-// 64 ~h2 76px - xl
-// 100 ~h1 101px - 2xl
+// 44 ~h4 43px - xl
+// 64 ~h2 76px - 2xl
+// 100 ~h1 101px - 3xl
