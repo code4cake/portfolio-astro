@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex items-center py-10 md:gap-10">
-  <h1 class="text-2xl uppercase leading-none">
+  <h1 class="text-2xl md:text-3xl uppercase leading-none">
     <a {href}>{text}</a>
   </h1>
   <svg
