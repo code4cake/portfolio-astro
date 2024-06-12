@@ -14,14 +14,14 @@ import ProjectList from "../components/projectList.svelte"
       Work
     </h1>
     <section class="pt-6">
-      <!-- <ul class="grid gap-6"></ul> -->
-      <ProjectList />
+      <ul class="grid gap-6">
+        <ProjectList />
+      </ul>
     </section>
+    <article class="mx-8 grid pt-2">
+      <NavigateTo href="/print/" text="Print" />
+      <BackToTop client:load />
+    </article>
   </main>
+  <Footer />
 </Layout>
-<article class="mx-8 grid">
-  <NavigateTo href="/print/" text="Print" />
-  <BackToTop client:load />
-</article>
-
-<Footer />
