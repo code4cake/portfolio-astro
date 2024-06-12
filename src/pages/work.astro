@@ -4,6 +4,7 @@ import Header from "../components/header.svelte"
 import Footer from "../components/footer.svelte"
 import NavigateTo from "../components/navigateTo.svelte"
 import BackToTop from "../components/backToTop.svelte"
+import ProjectList from "../components/projectList.svelte"
 ---
 
 <Layout title="Work">
@@ -13,37 +14,14 @@ import BackToTop from "../components/backToTop.svelte"
       Work
     </h1>
     <section class="pt-6">
-      <ul class="grid gap-6">
-        <li class="d flex border-b-2 border-black-muted">
-          <a
-            href=""
-            class="fira__regular ml-8 text-2xl uppercase leading-tight md:pr-2 md:text-3xl"
-            >0. dpt omgeving
-          </a>
-          <span class="fira__regular pr-8 text-large">2023</span>
-        </li>
-        <li class="flex border-b-2 border-black-muted">
-          <a
-            href=""
-            class="fira__regular pl-8 text-2xl uppercase leading-tight md:pr-2 md:text-3xl"
-            >1. smilng agency
-          </a>
-          <span class="fira__regular pr-8 text-large">2022</span>
-        </li>
-        <li class="flex border-b-2 border-black-muted">
-          <a
-            href=""
-            class="fira__regular pl-8 text-2xl uppercase leading-tight md:pr-2 md:text-3xl"
-            >2. Cristy bertolini
-          </a>
-          <span class="fira__regular pr-8 text-large">Coming Soon</span>
-        </li>
-      </ul>
+      <!-- <ul class="grid gap-6"></ul> -->
+      <ProjectList />
     </section>
-    <article class="mx-8 grid">
-      <NavigateTo href="/print/" text="Print" />
-      <BackToTop client:load />
-    </article>
   </main>
-  <Footer />
 </Layout>
+<article class="mx-8 grid">
+  <NavigateTo href="/print/" text="Print" />
+  <BackToTop client:load />
+</article>
+
+<Footer />
