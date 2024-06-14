@@ -1,40 +1,35 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { gsap } from 'gsap';
+  import { onMount } from "svelte"
+  import { gsap } from "gsap"
 
-
-  export let textOne;
-  export let textTwo;
-  export let textThree;
-
-  
+  export let textOne
+  export let textTwo
+  export let textThree
 
   onMount(() => {
-    
-    const duration = 30;
+    const duration = 30
 
-    const ticker = document.querySelector('.scrolling-container') as HTMLElement;
-    const items = Array.from(ticker.querySelectorAll('li')) as HTMLElement[];
+    const ticker = document.querySelector(".scrolling-container") as HTMLElement
+    const items = Array.from(ticker.querySelectorAll("li")) as HTMLElement[]
 
-  
-    items.forEach(item => {
-      const clone = item.cloneNode(true) as HTMLElement;
-      ticker.appendChild(clone);
-      items.push(clone);
-    });
+    items.forEach((item) => {
+      const clone = item.cloneNode(true) as HTMLElement
+      ticker.appendChild(clone)
+      items.push(clone)
+    })
 
-    let anim: gsap.core.Tween;
-    let totalDistance: number;
+    let anim: gsap.core.Tween
+    let totalDistance: number
 
     function resize() {
-      if (anim) anim.kill();
-      totalDistance = items[0].offsetWidth * items.length / 2;
+      if (anim) anim.kill()
+      totalDistance = (items[0].offsetWidth * items.length) / 2
 
       items.forEach((item, i) => {
         gsap.set(item, {
-          x: i * items[0].offsetWidth
-        });
-      });
+          x: i * items[0].offsetWidth,
+        })
+      })
 
       anim = gsap.to(items, {
         x: `-=${totalDistance}`,
@@ -42,18 +37,17 @@
         ease: "none",
         repeat: -1,
         modifiers: {
-          x: gsap.utils.unitize(x => parseFloat(x) % totalDistance)
-        }
-      });
+          x: gsap.utils.unitize((x) => parseFloat(x) % totalDistance),
+        },
+      })
     }
 
-  
-    window.addEventListener('resize', resize);
-    resize();
-  });
+    window.addEventListener("resize", resize)
+    resize()
+  })
 </script>
 
-<section class="scrolling-container ">
+<section class="scrolling-container">
   <ul class="wrapper">
     <li class="scrolling-text text-2xl uppercase">{textOne}</li>
     <li class="scrolling-text text-2xl uppercase">{textTwo}</li>
