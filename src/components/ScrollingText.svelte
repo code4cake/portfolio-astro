@@ -2,76 +2,69 @@
   import { onMount } from "svelte"
   import { gsap } from "gsap"
 
-  export let textOne
-  export let textTwo
-  export let textThree
-
   onMount(() => {
-    const duration = 30
+    const duration = 10
 
-    const ticker = document.querySelector(".scrolling-container") as HTMLElement
-    const items = Array.from(ticker.querySelectorAll("li")) as HTMLElement[]
+    document
+      .querySelectorAll(".scrolling-container .wrapper")
+      .forEach((ticker) => {
+        let totalDistance
+        const items = Array.from(ticker.querySelectorAll("li"))
 
-    items.forEach((item) => {
-      const clone = item.cloneNode(true) as HTMLElement
-      ticker.appendChild(clone)
-      items.push(clone)
-    })
-
-    let anim: gsap.core.Tween
-    let totalDistance: number
-
-    function resize() {
-      if (anim) anim.kill()
-      totalDistance = (items[0].offsetWidth * items.length) / 2
-
-      items.forEach((item, i) => {
-        gsap.set(item, {
-          x: i * items[0].offsetWidth,
+        items.forEach((item) => {
+          const clone = item.cloneNode(true)
+          ticker.appendChild(clone)
         })
-      })
 
-      anim = gsap.to(items, {
-        x: `-=${totalDistance}`,
-        duration: duration,
-        ease: "none",
-        repeat: -1,
-        modifiers: {
-          x: gsap.utils.unitize((x) => parseFloat(x) % totalDistance),
-        },
-      })
-    }
+        let anim
 
-    window.addEventListener("resize", resize)
-    resize()
+        function resize() {
+          if (anim) anim.play(0)
+          totalDistance = ticker.offsetWidth / 2
+
+          anim = gsap.to(ticker, {
+            duration: duration,
+            x: -totalDistance,
+            ease: "none",
+            repeat: -1,
+            overwrite: true,
+          })
+        }
+
+        window.addEventListener("resize", resize)
+        resize()
+      })
   })
 </script>
 
-<section class="scrolling-container">
+<!-- [ERROR]: ok issue is with the font-size actually when i remove the font-size 15vw  the text jumps -->
+<div class="scrolling-container">
   <ul class="wrapper">
-    <li class="scrolling-text text-2xl uppercase">{textOne}</li>
-    <li class="scrolling-text text-2xl uppercase">{textTwo}</li>
-    <li class="scrolling-text text-2xl uppercase">{textThree}</li>
+    <li class="scrolling-text text-2xl uppercase">Some random words</li>
   </ul>
-</section>
+</div>
 
 <style>
   .scrolling-container {
     display: flex;
-    overflow: hidden;
-    width: 100%;
-    white-space: nowrap;
+    align-items: center;
+    overflow-x: hidden;
+    /* position: relative; */
   }
 
-  .wrapper {
-    display: flex;
+  .scrolling-container .wrapper {
     will-change: transform;
+    white-space: nowrap;
+    padding: 0;
   }
 
   .scrolling-text {
     white-space: nowrap;
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin-right: 1rem;
+    display: inline-block;
+
+    /* font-size: 15vw; */
   }
 </style>

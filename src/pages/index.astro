@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/layout.astro"
 import ScrollingText from "../components/scrollingText.svelte"
+import Marquee from "../components/marquee.svelte"
 ---
 
 <Layout title="Intro">
+  <!-- <Marquee client:load /> -->
+  <!-- <ScrollingText client:load /> -->
   <main class="grid grid-cols-1">
-    <ScrollingText
-      client:load
-      textOne="Some random words"
-      textTwo="Some random words"
-      textThree="Some random words"
-    />
+    <!-- <ScrollingText client:load textOne="Some random words" /> -->
+    <Marquee client:load />
+    <!-- <ScrollingText client:load /> -->
 
     <section class="container-center border-y-2 border-black-muted">
       <!-- left grid -->
@@ -56,12 +56,7 @@ import ScrollingText from "../components/scrollingText.svelte"
     </section>
 
     <!-- [FIXME]: Not bringing interactivity to this island -->
-    <ScrollingText
-      client:load
-      textOne="Frontend + Backend + "
-      textTwo="Development + Printing + "
-      textThree="Design + Branding + Strategy"
-    />
+    <!-- <ScrollingText client:load /> -->
   </main>
 
   <style>
