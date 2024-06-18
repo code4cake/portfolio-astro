@@ -6,16 +6,20 @@ import ScrollingText from "../components/scrollingText.svelte"
 
 <Layout title="Intro">
   <ScrollingText client:load />
-  <main class="grid grid-cols-1 md:max-h-dvh">
-    <!-- <ScrollingText client:load /> -->
-
+  <main class="grid grid-cols-1 md:min-h-dvh">
     <section class="container-center border-y-2 border-black-muted">
       <!-- left grid -->
-      <article class="border-r-2 border-black-muted px-2">
+
+      <!-- [FIXME]: te veel "space" in tablet en desktop  -->
+      <article
+        class="border-r-2 border-black-muted px-2 md:flex md:flex-col md:justify-between"
+      >
         <h1 class="text-2xl uppercase">Hi - I’m Dante Solis,</h1>
         <h1 class="text-2xl uppercase">front end engineer</h1>
         <h1 class="text-2xl uppercase">based in brussels belgium</h1>
-        <footer class="grid grid-cols-2 justify-items-center">
+        <footer
+          class="grid grid-cols-2 justify-items-center lg:flex lg:justify-around"
+        >
           <p class="text-base">All rights reserved</p>
           <p class="text-base">2024 &copy;</p>
         </footer>
@@ -51,19 +55,13 @@ import ScrollingText from "../components/scrollingText.svelte"
         </div>
       </article>
     </section>
-
-    <!-- [FIXME]: te veel space onder in tablet en desktop  -->
-    <!-- <ScrollingText
-      client:load
-      text="DEVELOPMENT + DESIGN + BRANDING + ILLUSTRATIONS +"
-      duration={50}
-    /> -->
   </main>
   <ScrollingText
     client:load
     text="DEVELOPMENT + DESIGN + BRANDING + ILLUSTRATIONS +"
     duration={50}
   />
+
   <style>
     .container-grid {
       display: grid;

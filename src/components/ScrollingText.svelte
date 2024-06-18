@@ -40,7 +40,6 @@
   })
 </script>
 
-<!-- [ERROR]: ok font-size actually when i remove the font-size 15vw  the text jumps, on mobile is ok but on the desktop not ok -->
 <div class="scrolling-container">
   <ul class="wrapper">
     <li class="scrolling-text text-2xl uppercase leading-snug">{text}</li>
@@ -52,7 +51,6 @@
     display: flex;
     align-items: center;
     overflow-x: hidden;
-    overflow-y: hidden;
   }
 
   .scrolling-container .wrapper {
@@ -66,7 +64,6 @@
     list-style: none;
     padding: 0;
     margin-right: 1rem;
-    /* display: inline-block; */
-    display: inline;
+    display: inline-block;
   }
 </style>
