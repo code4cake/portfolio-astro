@@ -52,6 +52,7 @@
     display: flex;
     align-items: center;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .scrolling-container .wrapper {
@@ -65,8 +66,7 @@
     list-style: none;
     padding: 0;
     margin-right: 1rem;
-    display: inline-block;
-
-    /* font-size: 15vw; */
+    /* display: inline-block; */
+    display: inline;
   }
 </style>

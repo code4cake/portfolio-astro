@@ -5,9 +5,9 @@ import ScrollingText from "../components/scrollingText.svelte"
 ---
 
 <Layout title="Intro">
-  <main class="grid grid-cols-1">
-    <ScrollingText client:load />
-    <!-- <Marquee client:load /> -->
+  <ScrollingText client:load />
+  <main class="grid grid-cols-1 md:max-h-dvh">
+    <!-- <ScrollingText client:load /> -->
 
     <section class="container-center border-y-2 border-black-muted">
       <!-- left grid -->
@@ -53,13 +53,17 @@ import ScrollingText from "../components/scrollingText.svelte"
     </section>
 
     <!-- [FIXME]: te veel space onder in tablet en desktop  -->
-    <ScrollingText
+    <!-- <ScrollingText
       client:load
       text="DEVELOPMENT + DESIGN + BRANDING + ILLUSTRATIONS +"
       duration={50}
-    />
+    /> -->
   </main>
-
+  <ScrollingText
+    client:load
+    text="DEVELOPMENT + DESIGN + BRANDING + ILLUSTRATIONS +"
+    duration={50}
+  />
   <style>
     .container-grid {
       display: grid;
