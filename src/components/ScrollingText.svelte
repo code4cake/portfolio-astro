@@ -2,8 +2,11 @@
   import { onMount } from "svelte"
   import { gsap } from "gsap"
 
+  export let text = "Animation + Motion Design + Web development +"
+  export let duration: number
+
   onMount(() => {
-    const duration = 10
+    duration = duration || 30
 
     document
       .querySelectorAll(".scrolling-container .wrapper")
@@ -37,10 +40,10 @@
   })
 </script>
 
-<!-- [ERROR]: ok issue is with the font-size actually when i remove the font-size 15vw  the text jumps -->
+<!-- [ERROR]: ok font-size actually when i remove the font-size 15vw  the text jumps, on mobile is ok but on the desktop not ok -->
 <div class="scrolling-container">
   <ul class="wrapper">
-    <li class="scrolling-text text-2xl uppercase">Some random words</li>
+    <li class="scrolling-text text-2xl uppercase leading-snug">{text}</li>
   </ul>
 </div>
 
@@ -49,7 +52,6 @@
     display: flex;
     align-items: center;
     overflow-x: hidden;
-    /* position: relative; */
   }
 
   .scrolling-container .wrapper {
