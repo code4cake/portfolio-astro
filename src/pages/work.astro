@@ -1,10 +1,14 @@
 ---
+import { getCollection } from "astro:content"
+
 import Layout from "../layouts/layout.astro"
 import Header from "../components/header.svelte"
 import Footer from "../components/footer.svelte"
 import NavigateTo from "../components/navigateTo.svelte"
 import BackToTop from "../components/backToTop.svelte"
-import ProjectList from "../components/projectList.svelte"
+import Project from "../components/project.svelte"
+
+const allProjects = await getCollection("projects")
 ---
 
 <Layout title="Work">
@@ -14,8 +18,8 @@ import ProjectList from "../components/projectList.svelte"
       Work
     </h1>
     <section class="pt-6">
-      <ul class="grid gap-6">
-        <ProjectList />
+      <ul class="grid gap-6 py-4">
+        {allProjects.map((project) => <Project project={project} />)}
       </ul>
     </section>
     <article class="mx-8 grid pt-2">
