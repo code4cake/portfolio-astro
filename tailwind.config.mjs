@@ -20,5 +20,7 @@ export default {
 
 // 20 ~h6 24px - large
 // 44 ~h4 43px - xl
-// 64 ~h2 76px - 2xl
-// 100 ~h1 101px - 3xl
+// 64 ~h2 76px - 2xl - to change to h3 (3.157rem)??
+// 80 ~ h2??   80px -- to change to 3xl ???
+// 100 ~h1 101px - 3xl -- to change to 4xl ???
+
