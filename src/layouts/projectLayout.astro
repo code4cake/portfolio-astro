@@ -1,13 +1,44 @@
 ---
+import { Image } from "astro:assets"
 import Layout from "./layout.astro"
+import Header from "../components/header.svelte"
+
 const { frontmatter } = Astro.props
 ---
 
 <Layout title={frontmatter.title}>
-  <article>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.year}</p>
-    <p>{frontmatter.role}</p>
-    <p>{frontmatter.info}</p>
-  </article>
+  <Header />
+  <main class="mx-8 grid gap-4 pt-14">
+    <header class="flex">
+      <h1 class="text-2xl uppercase leading-snug">{frontmatter.title}</h1>
+      <p class="fira__regular">{frontmatter.year}</p>
+    </header>
+
+    <!-- [ERROR]: Importing images liek this in frontmatter how -->
+    <!-- <Image src={frontmatter.images[0].src} alt={frontmatter.images[0].alt} /> -->
+
+    <article class="grid gap-4">
+      <div class="grid grid-cols-2 border-b-2 border-black-muted">
+        <p class="fira__regular">year</p>
+        <p class="text-large">{frontmatter.year}</p>
+      </div>
+
+      <div class="grid grid-cols-2 border-b-2 border-black-muted">
+        <p class="fira__regular">info</p>
+        <p class="text-large">{frontmatter.info}</p>
+      </div>
+
+      <div class="grid grid-cols-2 border-b-2 border-black-muted">
+        <p class="fira__regular">info</p>
+        <p class="text-large">{frontmatter.info}</p>
+      </div>
+
+      <div class="grid grid-cols-2 border-b-2 border-black-muted">
+        <p class="fira__regular">tech</p>
+        <ul class="text-large">
+          {frontmatter.techStack.map((tech: string) => <li>{tech}</li>)}
+        </ul>
+      </div>
+    </article>
+  </main>
 </Layout>
